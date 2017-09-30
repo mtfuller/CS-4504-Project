@@ -23,19 +23,21 @@ public class SetupDialog extends Dialog<String> {
         grid.setVgap(10);
 
         // Create choice box control elements
-        TextField destIDField = new TextField();
+        TextField destIPField = new TextField();
+        TextField hostIPField = new TextField(hostIP);
+        hostIPField.setEditable(false);
 
         // Add choice boxes to the dialog pane
         grid.add(new Label("Host IP:"), 0, 0);
-        grid.add(new Label(hostIP), 1, 0);
+        grid.add(hostIPField, 1, 0);
         grid.add(new Label("Destination IP:"), 0, 1);
-        grid.add(destIDField, 1, 1);
+        grid.add(destIPField, 1, 1);
         getDialogPane().setContent(grid);
 
         // Bind click event to the dialog run button
         setResultConverter(dialogButton -> {
             if (dialogButton == submitButton) {
-                return destIDField.getText();
+                return destIPField.getText();
             }
             return null;
         });

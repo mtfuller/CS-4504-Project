@@ -17,9 +17,7 @@ public abstract class TCPPeer {
     private SetupDialog peerSetup;
 
     public TCPPeer(String name, String routerHostIP, int routerRort) throws UnknownHostException {
-        InetAddress.getLocalHost().
         this.hostIP = InetAddress.getLocalHost().getHostAddress();
-        this.hostPort = I
         this.routerHostIP = routerHostIP;
         this.routerPort = routerRort;
         this.peerSetup = new SetupDialog(name, this.hostIP);
@@ -39,7 +37,7 @@ public abstract class TCPPeer {
 
     public String promptDestIP() {
         String addr = this.peerSetup.showAndWait().get();
-        String port = this.
+        return addr;
     }
 
     public abstract void run() throws IOException;
