@@ -16,25 +16,12 @@ public class TCPClient extends TCPPeer {
         PrintWriter out = null; // for writing to ServerRouter
         BufferedReader in = null; // for reading form ServerRouter
         String host = getHostIP(); // Client machine's IP
-        String routerName = getRouterHostIP(); // ServerRouter host name
-        int SockNum = getRouterPort(); // port number
 
-        // Tries to connect to the ServerRouter
-        try {
-            Socket = new Socket(routerName, SockNum);
-            out = new PrintWriter(Socket.getOutputStream(), true);
-            in = new BufferedReader(new InputStreamReader(Socket.getInputStream()));
-        } catch (UnknownHostException e) {
-            System.err.println("Don't know about router: " + routerName);
-            System.exit(1);
-        } catch (IOException e) {
-            System.err.println("Couldn't get I/O for the connection to: " + routerName);
-            System.exit(1);
-        }
+        out = new PrintWriter(getTcpSocket().getOutputStream(), true);
+        in = new BufferedReader(new InputStreamReader(getTcpSocket().getInputStream()));
 
         // Variables for message passing
         String path = new File(".").getAbsolutePath();
-        System.out.println(path);
         Reader reader = new FileReader("res/file.txt");
         BufferedReader fromFile = new BufferedReader(reader); // reader for the string file
         String fromServer; // messages received from ServerRouter
@@ -69,6 +56,6 @@ public class TCPClient extends TCPPeer {
         // closing connections
         out.close();
         in.close();
-        Socket.close();
+        getTcpSocket().close();
     }
 }
