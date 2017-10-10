@@ -63,6 +63,7 @@ public class SThread extends Thread {
                 if (inputLine.equals("Bye.")) { // exit statement
                     System.out.println("FOUND BYE!!!");
                     outTo.println("Bye.");
+                    out.println("Bye.");
                     System.out.println("SENT BYE!!!");
                     break;
                 }
