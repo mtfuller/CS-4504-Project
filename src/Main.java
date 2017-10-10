@@ -2,6 +2,7 @@ import edu.kennesaw.cs4504.services.TCPPeer;
 import edu.kennesaw.cs4504.views.LauncherDialog;
 import edu.kennesaw.cs4504.views.SetupDialog;
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.stage.Stage;
 
 /**
@@ -17,5 +18,6 @@ public class Main extends Application{
         LauncherDialog launcherDialog = new LauncherDialog();
         TCPPeer application = launcherDialog.showAndWait().get();
         application.run();
+        Platform.exit();
     }
 }

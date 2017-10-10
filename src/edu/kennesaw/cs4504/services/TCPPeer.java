@@ -25,6 +25,7 @@ public abstract class TCPPeer {
             System.exit(1);
         } catch (IOException e) {
             System.err.println("Couldn't get I/O for the connection to: " + routerHostIP);
+            e.printStackTrace();
             System.exit(1);
         }
         this.routerHostIP = routerHostIP;
