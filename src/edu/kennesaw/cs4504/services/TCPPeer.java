@@ -11,7 +11,6 @@ import java.net.UnknownHostException;
  * Created by Thomas on 9/30/2017.
  */
 public abstract class TCPPeer {
-    private String hostIP;
     private String hostPort;
     private String routerHostIP;
     private int routerPort;
@@ -21,7 +20,6 @@ public abstract class TCPPeer {
     public TCPPeer(String name, String routerHostIP, int routerRort) {
         try {
             this.tcpSocket = new Socket(routerHostIP, routerRort);
-            this.hostIP = InetAddress.getLocalHost().getHostAddress();
         } catch (UnknownHostException e) {
             System.err.println("Don't know about router: " + routerHostIP);
             System.exit(1);
@@ -31,11 +29,11 @@ public abstract class TCPPeer {
         }
         this.routerHostIP = routerHostIP;
         this.routerPort = routerRort;
-        this.peerSetup = new SetupDialog(name, this.hostIP);
+        this.peerSetup = new SetupDialog(name, getHostIP()+":"+getHostPort());
     }
 
     public String getHostIP() {
-        return hostIP;
+        return this.tcpSocket.getLocalAddress().toString().substring(1);
     }
 
     public int getHostPort() {return this.tcpSocket.getLocalPort();}
