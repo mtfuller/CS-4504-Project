@@ -45,6 +45,8 @@ public class TCPServerRouter {
         serverSocket.close();
     }
 
+    // Taken from: https://stackoverflow.com/questions/40912417/java-getting-ipv4-address
+    // TODO: refine and refactor for our purposes.
     public static String getIPv4InetAddress() throws SocketException, UnknownHostException {
       String ip = null;
       try {
@@ -62,7 +64,8 @@ public class TCPServerRouter {
                   // *EDIT*
                   if (addr instanceof Inet6Address) continue;
 
-                  ip = addr.getHostAddress();
+                  if (ip == null)
+                    ip = addr.getHostAddress();
                   System.out.println("Found Network Interface: " + iface.getDisplayName() + " " + ip);
               }
           }
