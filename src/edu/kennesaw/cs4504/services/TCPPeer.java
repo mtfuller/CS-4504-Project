@@ -20,14 +20,20 @@ public abstract class TCPPeer {
     public TCPPeer(String name, String routerHostIP, int routerRort) {
         try {
             this.tcpSocket = new Socket(routerHostIP, routerRort);
+            System.out.println("Created TCP SOCKET");
         } catch (UnknownHostException e) {
             System.err.println("Don't know about router: " + routerHostIP);
+            e.printStackTrace();
             System.exit(1);
         } catch (IOException e) {
             System.err.println("Couldn't get I/O for the connection to: " + routerHostIP);
             e.printStackTrace();
             System.exit(1);
+        } catch (Exception e) {
+            System.err.println("CAUGHT YA!!!");
+            e.printStackTrace();
         }
+        System.out.println("FINISHED PEER SETUP");
         this.routerHostIP = routerHostIP;
         this.routerPort = routerRort;
         this.peerSetup = new SetupDialog(name, getHostIP()+":"+getHostPort());
