@@ -66,7 +66,7 @@ public class TCPServerRouter {
 
                   if (ip == null)
                     ip = addr.getHostAddress();
-                  System.out.println("Found Network Interface: " + iface.getDisplayName() + " " + ip);
+                  System.out.println("Found Network Interface: " + iface.getDisplayName() + " " + addr.getHostAddress());
               }
           }
       } catch (SocketException e) {
