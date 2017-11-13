@@ -38,10 +38,13 @@ public class TCPClient extends TCPPeer {
 
         // Communication while loop
         while ((fromServer = in.readLine()) != null) {
-            System.out.println("Server: " + fromServer);
+            System.out.println("Server: \"" + fromServer + "\"");
             t1 = System.currentTimeMillis();
-            if (fromServer.equals("Bye.")) // exit statement
+
+            if (fromServer.equals("Bye.")) {
+                System.out.println("HELLO?");
                 break;
+            }
             t = t1 - t0;
             System.out.println("Cycle time: " + t);
 
@@ -49,9 +52,12 @@ public class TCPClient extends TCPPeer {
             if (fromUser != null) {
                 System.out.println("Client: " + fromUser);
                 out.println(fromUser); // sending the strings to the Server via ServerRouter
+                System.out.println("SENT F");
                 t0 = System.currentTimeMillis();
             }
         }
+
+        System.out.println("FINISHED LOOP!");
 
         // closing connections
         out.close();

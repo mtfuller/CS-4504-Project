@@ -59,9 +59,11 @@ public class LauncherDialog extends Dialog<TCPPeer> {
                     else if (appTypeBox.getValue() == "Client") return new TCPClient(routerHost, routerPort);
                     else return null;
                 } catch (UnknownHostException e) {
+                    e.printStackTrace();
                     return null;
                 }
             }
+            System.out.println("END OF BUTTON PRESS");
             return null;
         });
 

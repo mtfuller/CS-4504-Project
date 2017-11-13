@@ -1,0 +1,13 @@
+#!/bin/bash
+
+if [ ! -d "./out" ]; then
+  mkdir ./out
+fi
+
+if [ ! -d "./out/res" ]; then
+  rm -rf ./out/res
+fi
+
+cp -R res ./out/res
+
+javac $(find . -name "*.java") -d ./out
